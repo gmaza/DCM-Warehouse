@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DCMW.Domain.Entities.Remaining
+namespace DCMW.Domain.Entities.Remainings
 {
     public partial class Remaining : BaseEntity
     {

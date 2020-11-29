@@ -1,6 +1,6 @@
 using System;
 
-namespace DCMW.Domain.Distributor {
+namespace DCMW.Domain.Distributors {
     public partial class Distributor{
         public Distributor(Guid id, string fullname, string mobile, string email, string company) : base(id)
         {

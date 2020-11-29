@@ -1,6 +1,6 @@
 using System;
 
-namespace DCMW.Domain.Product
+namespace DCMW.Domain.Products
 {
     public partial class Product : BaseEntity
     {

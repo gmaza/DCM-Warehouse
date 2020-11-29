@@ -1,7 +1,7 @@
 ﻿using DCMW.Application.UseCases.Products;
 using DCMW.Application.UseCases.Products.Queries.GetProducts;
 using DCMW.Common.Models;
-using DCMW.Domain.Product;
+using DCMW.Domain.Products;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

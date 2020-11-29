@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DCMW.Domain.Delivery {
+namespace DCMW.Domain.Deliveries {
     public partial class Delivery {
         public Delivery(Guid id, DateTime date, DeliveryDistributor distributor, IEnumerable<DeliveryProduct> products) : base(id)
         {

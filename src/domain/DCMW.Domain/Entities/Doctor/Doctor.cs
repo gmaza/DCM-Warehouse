@@ -1,6 +1,6 @@
 using System;
 
-namespace DCMW.Domain.Doctor
+namespace DCMW.Domain.Doctors
 {
     public partial class Doctor
     {

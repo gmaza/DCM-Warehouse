@@ -1,4 +1,4 @@
-namespace DCMW.Domain.Distributor
+namespace DCMW.Domain.Distributors
 {
     public partial class Distributor : BaseEntity
     {

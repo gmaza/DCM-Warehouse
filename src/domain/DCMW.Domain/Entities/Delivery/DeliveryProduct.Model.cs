@@ -1,6 +1,6 @@
 using System;
 
-namespace DCMW.Domain.Delivery
+namespace DCMW.Domain.Deliveries
 {
     public class DeliveryProduct : BaseEntity
     {

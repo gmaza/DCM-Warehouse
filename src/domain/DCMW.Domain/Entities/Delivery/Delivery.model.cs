@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace DCMW.Domain.Delivery
+namespace DCMW.Domain.Deliveries
 {
     public partial class Delivery : BaseEntity
     {
