@@ -6,14 +6,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\Deliveries\Commands\" />
-    <Folder Include="UseCases\Deliveries\Queries\" />
     <Folder Include="UseCases\Distributors\Commands\" />
     <Folder Include="UseCases\Distributors\Queries\" />
     <Folder Include="UseCases\Doctors\Commands\" />
     <Folder Include="UseCases\Doctors\Queries\" />
-    <Folder Include="UseCases\Pickings\Commands\" />
-    <Folder Include="UseCases\Pickings\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

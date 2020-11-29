@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DCMW.Application.UseCases.Products.Commands.UpdateProduct
+namespace DCMW.Application.UseCases.Products
 {
     public class UpdateProductHandler : IRequestHandler<UpdateProductRequest, Result>
     {
