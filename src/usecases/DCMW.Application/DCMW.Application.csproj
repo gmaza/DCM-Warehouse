@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DCMW.Common\DCMW.Common.csproj" />
+    <ProjectReference Include="..\..\common\DCMW.Common\DCMW.Common.csproj" />
     <ProjectReference Include="..\..\domain\DCMW.Domain\DCMW.Domain.csproj" />
   </ItemGroup>
 
