@@ -20,7 +20,6 @@ namespace DCMW.Domain.Entities.Remainings
 
         private string _description;
 
-        private decimal _defaultPrice;
 
         public Guid ProductID
         {
@@ -42,10 +41,6 @@ namespace DCMW.Domain.Entities.Remainings
             get => _description;
         }
 
-        public decimal DefaultPrice
-        {
-            get => _defaultPrice;
-        }
 
         public decimal Amount
         {
