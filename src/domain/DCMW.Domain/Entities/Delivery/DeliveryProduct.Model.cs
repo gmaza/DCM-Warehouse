@@ -4,6 +4,8 @@ namespace DCMW.Domain.Delivery
 {
     public class DeliveryProduct : BaseEntity
     {
+        private DeliveryProduct(){}
+
         private string _name;
         private string _code;
         private string _description;

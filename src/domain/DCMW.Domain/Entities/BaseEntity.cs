@@ -1,19 +1,24 @@
+using DCMW.Domain.Abstractions.DomainEvents;
 using System;
+using System.Collections.Generic;
 
 namespace DCMW.Domain
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
-        private readonly Guid _id;
+        private Guid _id;
         public Guid ID
         {
             get => _id;
-            init => _id = (value != default(Guid) ? value : throw new ArgumentNullException(nameof(ID)));
         }
 
-        public BaseEntity(Guid id)
+        protected BaseEntity(Guid id)
         {
             _id = id;
         }
+
+        protected BaseEntity(){}
+
+        public List<IDomainEvent> Events { get; }
     }
 }

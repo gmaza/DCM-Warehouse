@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace DCMW.Domain.Delivery
 {
-    public class Delivery : BaseEntity
+    public partial class Delivery : BaseEntity
     {
         private Delivery() { }
 

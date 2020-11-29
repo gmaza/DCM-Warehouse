@@ -1,7 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DCMW.Common\DCMW.Common.csproj" />
     <ProjectReference Include="..\..\domain\DCMW.Domain\DCMW.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UseCases\Deliveries\Commands\" />
+    <Folder Include="UseCases\Deliveries\Queries\" />
+    <Folder Include="UseCases\Distributors\Commands\" />
+    <Folder Include="UseCases\Distributors\Queries\" />
+    <Folder Include="UseCases\Doctors\Commands\" />
+    <Folder Include="UseCases\Doctors\Queries\" />
+    <Folder Include="UseCases\Pickings\Commands\" />
+    <Folder Include="UseCases\Pickings\Queries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
   <PropertyGroup>
