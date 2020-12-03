@@ -6,6 +6,16 @@ namespace DCMW.Domain.Deliveries
     {
         private DeliveryProduct(){}
 
+        public DeliveryProduct(string name, string code, string description, decimal price, decimal quantity, string unit)
+        {
+            _name = name;
+            _code = code;
+            _description = description;
+            _price = price;
+            _quantity = quantity;
+            _unit = unit;
+        }
+
         private string _name;
         private string _code;
         private string _description;

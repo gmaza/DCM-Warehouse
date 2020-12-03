@@ -10,6 +10,15 @@ namespace DCMW.Application.UseCases.Deliveries
 {
     public class AddNewDeliveryRequest : IRequest<Result>
     {
+        public Guid DistributorID { get; set; }
+        public DateTime Date { get; set; }
+        public List<AddNewDeliveryproduct> Products { get; set; }
+    }
 
+    public class AddNewDeliveryproduct
+    {
+        public Guid ProductID { get; set; }
+        public decimal Amoount { get; set; }
+        public string Unit { get; internal set; }
     }
 }

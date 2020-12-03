@@ -29,22 +29,27 @@ namespace DCMW.Infrastructure.DAL.Repository
             }
         }
 
-        public Result Delete(Guid id)
+        public Task<Result> Delete(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public (Product, DateTime?) Get(Guid id)
+        public Task<(Product, DateTime?)> Get(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Result Insert(Product t)
+        public Task<IEnumerable<Product>> GetByIDs(IEnumerable<Guid> ids)
         {
             throw new NotImplementedException();
         }
 
-        public Result Update(Product t, DateTime lastUpdateDate)
+        public Task<Result> Insert(Product t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Result> Update(Product t, DateTime lastUpdateDate)
         {
             throw new NotImplementedException();
         }

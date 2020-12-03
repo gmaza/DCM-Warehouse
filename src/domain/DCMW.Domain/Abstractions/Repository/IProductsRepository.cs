@@ -9,5 +9,6 @@ namespace DCMW.Domain.Abstractions.Repository
 {
     public interface IProductsRepository : IRepository<Product>
     {
+        Task<IEnumerable<Product>> GetByIDs(IEnumerable<Guid> ids);
     }
 }

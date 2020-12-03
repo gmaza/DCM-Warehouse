@@ -9,12 +9,12 @@ namespace DCMW.Domain.Abstractions.Repository
 {
     public interface IRepository<T>
     {
-        Result Insert(T t);
+        Task<Result> Insert(T t);
 
-        Result Update(T t, DateTime lastUpdateDate);
+        Task<Result> Update(T t, DateTime lastUpdateDate);
 
-        (T, DateTime?) Get(Guid id);
+        Task<(T, DateTime?)> Get(Guid id);
 
-        Result Delete(Guid id);
+        Task<Result> Delete(Guid id);
     }
 }

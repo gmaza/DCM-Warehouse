@@ -6,6 +6,14 @@ namespace DCMW.Domain.Deliveries
     {
         private DeliveryDistributor() { }
 
+        public DeliveryDistributor(string fullName, string mobileNumber, string email, string companyName)
+        {
+            _fullName = fullName;
+            _mobileNumber = mobileNumber;
+            _email = email;
+            _companyName = companyName;
+        }
+
         private string _fullName;
         private string _mobileNumber;
         private string _email;
