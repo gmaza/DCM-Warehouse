@@ -10,5 +10,23 @@ namespace DCMW.Domain.Doctors
             _mobileNumber = mobile;
             _personalNumber = personalNumber;
         }
+
+        public Doctor ChangeFullName(string fullName)
+        {
+            _fullName = fullName;
+            return this;
+        }
+        
+        public Doctor ChangeMobile(string mobile)
+        {
+            _mobileNumber = mobile;
+            return this;
+        }
+
+        public Doctor ChangePersonalNumber(string personalNumber)
+        {
+            _personalNumber = personalNumber;
+            return this;
+        }
     }
 }

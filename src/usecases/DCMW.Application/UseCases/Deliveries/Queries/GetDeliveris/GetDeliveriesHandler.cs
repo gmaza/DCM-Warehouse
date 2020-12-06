@@ -23,6 +23,7 @@ namespace DCMW.Application.UseCases.Deliveries.Queries.GetDeliveris
         {
             var items = await _deliveryRepository.Filter(request.SearchWord, request.Skip, request.Take);
             var quantiy = await _deliveryRepository.Count(request.SearchWord);
+
             return new GetDeliveriesResponse
             {
                 Items = items,

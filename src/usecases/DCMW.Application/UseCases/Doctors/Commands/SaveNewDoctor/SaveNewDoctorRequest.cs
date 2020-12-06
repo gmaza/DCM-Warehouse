@@ -10,17 +10,8 @@ namespace DCMW.Application.UseCases.Doctors
 {
     public class SaveNewDoctorRequest : IRequest<Result>
     {
-        private string _name;
-
-        private string _code;
-
-        private string _description;
-
-        private decimal _defaultPrice;
-
-        public string Name { get => _name; set => _name = value; }
-        public string Code { get => _code; set => _code = value; }
-        public string Description { get => _description; set => _description = value; }
-        public decimal DefaultPrice { get => _defaultPrice; set => _defaultPrice = value; }
+        public string FullName { get; internal set; }
+        public string Mobile { get; internal set; }
+        public string PersonalNumber { get; internal set; }
     }
 }

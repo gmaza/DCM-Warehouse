@@ -9,5 +9,8 @@ namespace DCMW.Application.UseCases.Doctors.Queries.GetDoctors
 {
     public class GetDoctorsRequest : IRequest<GetDoctorsResponse>
     {
+        public string SearchWord { get; set; }
+        public int Take { get; set; }
+        public int Skip { get; set; }
     }
 }

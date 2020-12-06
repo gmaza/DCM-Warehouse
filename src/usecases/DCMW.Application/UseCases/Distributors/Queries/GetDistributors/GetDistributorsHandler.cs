@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using DCMW.Domain.Abstractions.Repository;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,23 @@ namespace DCMW.Application.UseCases.Distrbutors.Queries.GetDistrbutors
 {
     public class GetDistrbutorsHandler : IRequestHandler<GetDistrbutorsRequest, GetDistrbutorsResponse>
     {
-        public Task<GetDistrbutorsResponse> Handle(GetDistrbutorsRequest request, CancellationToken cancellationToken)
+        private readonly IDistributorRepository distributorRepository;
+
+        public GetDistrbutorsHandler(IDistributorRepository distributorRepository)
         {
-            throw new NotImplementedException();
+            this.distributorRepository = distributorRepository;
+        }
+
+        public async Task<GetDistrbutorsResponse> Handle(GetDistrbutorsRequest request, CancellationToken cancellationToken)
+        {
+            var items = await distributorRepository.Filter(request.SearchWord, request.Skip, request.Take);
+            var quantiy = await distributorRepository.Count(request.SearchWord);
+
+            return new GetDistrbutorsResponse
+            {
+                Items = items,
+                Quantity = quantiy
+            };
         }
     }
 }

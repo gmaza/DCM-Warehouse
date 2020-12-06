@@ -1,4 +1,5 @@
 ﻿using DCMW.Common.Models;
+using DCMW.Domain.Abstractions.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,22 @@ namespace DCMW.Application.UseCases.Doctors.Commands.UpdateDoctor
 {
     public class UpdateDoctorHandler : IRequestHandler<UpdateDoctorRequest, Result>
     {
-        public Task<Result> Handle(UpdateDoctorRequest request, CancellationToken cancellationToken)
+        private readonly IDoctorRepository doctorRepository;
+
+        public UpdateDoctorHandler(IDoctorRepository doctorRepository)
         {
-            throw new NotImplementedException();
+            this.doctorRepository = doctorRepository;
+        }
+
+        public async Task<Result> Handle(UpdateDoctorRequest request, CancellationToken cancellationToken)
+        {
+            var (doctor, updateDate) = await doctorRepository.Get(request.ID);
+
+            doctor.ChangeFullName(request.FullName)
+                .ChangeMobile(request.Mobile)
+                .ChangePersonalNumber(request.PersonalNumber);
+
+            return await doctorRepository.Update(doctor, updateDate.Value);
         }
     }
 }

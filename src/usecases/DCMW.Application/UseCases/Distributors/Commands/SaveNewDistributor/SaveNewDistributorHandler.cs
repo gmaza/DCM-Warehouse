@@ -1,4 +1,6 @@
 ﻿using DCMW.Common.Models;
+using DCMW.Domain.Abstractions.Repository;
+using DCMW.Domain.Distributors;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,22 @@ namespace DCMW.Application.UseCases.Distrbutors
 {
     public class SaveNewDistrbutorHandler : IRequestHandler<SaveNewDistrbutorRequest, Result>
     {
+        private readonly IDistributorRepository distributorRepository;
+
+        public SaveNewDistrbutorHandler(IDistributorRepository distributorRepository)
+        {
+            this.distributorRepository = distributorRepository;
+        }
+
         public Task<Result> Handle(SaveNewDistrbutorRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return distributorRepository.Insert(new Distributor (
+                Guid.NewGuid(),
+                fullname : request.FullName,
+                mobile : request.MobileNumber,
+                email : request.Email,
+                company : request.Company
+            ));   
         }
     }
 }

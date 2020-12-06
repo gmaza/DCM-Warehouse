@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DCMW.Domain.Distributors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,7 @@ namespace DCMW.Application.UseCases.Distrbutors.Queries.GetDistrbutors
 {
     public class GetDistrbutorsResponse
     {
+        public IEnumerable<Distributor> Items { get; internal set; }
+        public int Quantity { get; internal set; }
     }
 }
