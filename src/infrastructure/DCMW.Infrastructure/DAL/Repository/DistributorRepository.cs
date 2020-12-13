@@ -29,7 +29,17 @@ namespace DCMW.Infrastructure.DAL.Repository
             }
         }
 
+        public Task<int> Count(string searchWord)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<Result> Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Distributor>> Filter(object searchWord, object skip, object take)
         {
             throw new NotImplementedException();
         }
