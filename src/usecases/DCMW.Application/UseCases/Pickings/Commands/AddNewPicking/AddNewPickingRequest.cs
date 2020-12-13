@@ -21,10 +21,7 @@ namespace DCMW.Application.UseCases.Pickings.Commands.AddNewPicking
     public class AddNewPickingProductRequest
     {
         public Guid ProductID{ get; internal set; }
-        public string Name{ get; internal set; }
-        public string Code{ get; internal set; }
-        public string Description { get; internal set; }
-        public decimal Quantity{ get; internal set; }
+        public decimal Quantity { get; internal set; }
         public string Unit { get; internal set; }
     }
 }

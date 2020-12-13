@@ -16,5 +16,20 @@ namespace DCMW.Domain.Entities.Remainings
             _code = code;
             _description = desc;
         }
+
+        public Remaining Decrease(int amount)
+        {
+            if (amount < _amount)
+                throw new Exception("ბალანსი 0-ზე ნაკლები არ შეიძლება იყოს");
+
+            _amount -= amount;
+            return this;
+        }
+
+        public Remaining Increase(int amount)
+        {
+            _amount += amount;
+            return this;
+        }
     }
 }

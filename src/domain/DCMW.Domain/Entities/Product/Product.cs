@@ -11,5 +11,29 @@ namespace DCMW.Domain.Products
             _description = desc;
             _defaultPrice = defaultPrice;
         }
+
+        public Product ChangeName(string name)
+        {
+            _name = name;
+            return this;
+        }
+
+        public Product ChangeCode(string code)
+        {
+            _code = code;
+            return this;
+        }
+
+        public Product ChangeDescription(string descrption)
+        {
+            _description = descrption;
+            return this;
+        }
+
+        public Product ChangeDefaultPrice(decimal defaultPrice)
+        {
+            _defaultPrice = defaultPrice;
+            return this;
+        }
     }
 }

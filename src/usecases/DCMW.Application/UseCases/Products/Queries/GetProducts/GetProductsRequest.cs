@@ -9,5 +9,8 @@ namespace DCMW.Application.UseCases.Products.Queries.GetProducts
 {
     public class GetProductsRequest : IRequest<GetProductsResponse>
     {
+        public string SearchWord { get; set; }
+        public int Take { get; set; }
+        public int Skip { get; set; }
     }
 }

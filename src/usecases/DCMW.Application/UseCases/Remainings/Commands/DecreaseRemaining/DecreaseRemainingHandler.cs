@@ -1,4 +1,6 @@
 ﻿using DCMW.Common.Models;
+using DCMW.Domain.Abstractions.Repository;
+using DCMW.Domain.Entities.Remainings;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,9 +13,18 @@ namespace DCMW.Application.UseCases.Remainings
 {
     class DecreaseRemainingHandler : IRequestHandler<DecreaseRemainingRequest, Result>
     {
-        public Task<Result> Handle(DecreaseRemainingRequest request, CancellationToken cancellationToken)
+        private readonly IRemaininRepository remaininRepository;
+
+        public DecreaseRemainingHandler(IRemaininRepository remaininRepository)
         {
-            throw new NotImplementedException();
+            this.remaininRepository = remaininRepository;
+        }
+
+        public async Task<Result> Handle(DecreaseRemainingRequest request, CancellationToken cancellationToken)
+        {
+            var (remaining, lastUpdateDate) = await remaininRepository.GetByProduct(request.ProductID);
+            remaining.Decrease(request.Amount);
+            return await remaininRepository.Update(remaining, lastUpdateDate);
         }
     }
 }

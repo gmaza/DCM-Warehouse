@@ -1,4 +1,5 @@
 ﻿using DCMW.Common.Models;
+using DCMW.Domain.Abstractions.Repository;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,23 @@ namespace DCMW.Application.UseCases.Products
 {
     public class UpdateProductHandler : IRequestHandler<UpdateProductRequest, Result>
     {
-        public Task<Result> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
+        private readonly IProductsRepository productsRepository;
+
+        public UpdateProductHandler(IProductsRepository productsRepository)
         {
-            throw new NotImplementedException();
+            this.productsRepository = productsRepository;
+        }
+
+        public async Task<Result> Handle(UpdateProductRequest request, CancellationToken cancellationToken)
+        {
+            var (product, updateDate) = await productsRepository.Get(request.Id);
+
+            product.ChangeCode(request.Code)
+                .ChangeDefaultPrice(request.DefaultPrice)
+                .ChangeDescription(request.Description)
+                .ChangeName(request.Name);
+
+            return await productsRepository.Update(product, updateDate.Value);
         }
     }
 }

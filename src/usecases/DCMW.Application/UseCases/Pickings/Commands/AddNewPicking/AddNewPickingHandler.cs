@@ -14,30 +14,38 @@ namespace DCMW.Application.UseCases.Pickings.Commands.AddNewPicking
     public class AddNewPickingHandler : IRequestHandler<AddNewPickingRequest, Result>
     {
         private readonly IPickingRepository pickingRepository;
+        private readonly IProductsRepository productsRepository;
 
-        public AddNewPickingHandler(IPickingRepository pickingRepository)
+        public AddNewPickingHandler(IPickingRepository pickingRepository, IProductsRepository productsRepository)
         {
             this.pickingRepository = pickingRepository;
+            this.productsRepository = productsRepository;
         }
 
         public async Task<Result> Handle(AddNewPickingRequest request, CancellationToken cancellationToken)
         {
-            var doctor = new PickingDoctor(Guid.NewGuid(), 
+            var pickingDoctor = new PickingDoctor(Guid.NewGuid(), 
                 request.DoctorID, 
                 request.FullName,
                 request.MobileNumber, 
                 request.PersonalNumber);
 
-            var lst = request.Products.Select(i => new PickingProduct(Guid.NewGuid(),
-                    i.ProductID,
-                    i.Name,
-                    i.Code,
-                    i.Description,
-                    i.Quantity,
-                    i.Unit
-                ));
+            var products = await productsRepository.GetByIDs(request.Products.Select(p => p.ProductID));
 
-            return await pickingRepository.Insert(new Picking(Guid.NewGuid(), request.Date, doctor, lst));
+            var pickingProducts = from product in products
+                                  join requestProduct in request.Products
+                                  on product.ID equals requestProduct.ProductID
+                                  select new PickingProduct(Guid.NewGuid(),
+                                                            product.ID,
+                                                            product.Name,
+                                                            product.Code,
+                                                            product.Description,
+                                                            requestProduct.Quantity,
+                                                            requestProduct.Unit);
+
+            var picking = new Picking(Guid.NewGuid(), request.Date, pickingDoctor, pickingProducts);
+
+            return await pickingRepository.Insert(picking);
         }
     }
 }

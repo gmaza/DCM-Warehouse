@@ -13,7 +13,7 @@ namespace DCMW.Domain.Pickings
 
         private PickingDoctor _doctor;
 
-        private List<PickingProduct> _products;
+        private List<PickingProduct> _products = new List<PickingProduct>();
 
         public PickingDoctor Doctor
         {

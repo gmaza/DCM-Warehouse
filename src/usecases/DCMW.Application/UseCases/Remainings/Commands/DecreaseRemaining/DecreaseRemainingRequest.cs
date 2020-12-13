@@ -10,5 +10,7 @@ namespace DCMW.Application.UseCases.Remainings
 {
     public class DecreaseRemainingRequest : IRequest<Result>
     {
+        public Guid ProductID { get; set; }
+        public int Amount { get; set; }
     }
 }
