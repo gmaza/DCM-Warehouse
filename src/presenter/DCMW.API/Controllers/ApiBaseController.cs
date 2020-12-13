@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace DCMW.API.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [Route("api/[controller]")]
     //[ServiceFilter(typeof(ErrorHandlerFilter))]
     public abstract class ApiController : ControllerBase

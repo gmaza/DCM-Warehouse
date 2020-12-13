@@ -16,6 +16,8 @@ namespace DCMW.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+
             services.AddSingleton<IDeliveryRepository, DeliveryRepository>();
             services.AddSingleton<IDistributorRepository, DistributorRepository>();
             services.AddSingleton<IDoctorRepository, DoctorRepository>();

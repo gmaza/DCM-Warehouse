@@ -10,10 +10,9 @@ namespace DCMW.Application.UseCases.Distrbutors
 {
     public class SaveNewDistrbutorRequest : IRequest<Result>
     {
-        public string Company { get; internal set; }
-        public string Email { get; internal set; }
-        public string FullName { get; internal set; }
-        public string MobileNumber { get; internal set; }
-        public Guid ID { get; internal set; }
+        public string Company { get;  set; }
+        public string Email { get;  set; }
+        public string FullName { get;  set; }
+        public string MobileNumber { get;  set; }
     }
 }
