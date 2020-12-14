@@ -20,7 +20,7 @@ namespace DCMW.API.Controllers
             return await Mediator.Send(request);
         }
 
-        [HttpPost("SaveNew")]
+        [HttpPost("Save")]
         public async Task<Result> Save([FromBody] SaveNewDoctorRequest request)
         {
             return await Mediator.Send(request);

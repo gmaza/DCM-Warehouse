@@ -12,22 +12,9 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class DoctorRepository : IDoctorRepository
+    public class DoctorRepository : BaseRepository, IDoctorRepository
     {
-        private readonly IConfiguration _config;
-
-        public DoctorRepository(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        private IDbConnection Connection
-        {
-            get
-            {
-                return new SqlConnection(_config.GetConnectionString("dcmwconnectionstring"));
-            }
-        }
+        public DoctorRepository(IConfiguration config) : base(config) { }
 
         public Task<int> Count(string searchWord)
         {

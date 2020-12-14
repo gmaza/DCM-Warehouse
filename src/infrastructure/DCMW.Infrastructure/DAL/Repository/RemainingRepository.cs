@@ -12,22 +12,9 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class RemainingRepository : IRemaininRepository
+    public class RemainingRepository : BaseRepository, IRemaininRepository
     {
-        private readonly IConfiguration _config;
-
-        public RemainingRepository(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        private IDbConnection Connection
-        {
-            get
-            {
-                return new SqlConnection(_config.GetConnectionString("dcmwconnectionstring"));
-            }
-        }
+        public RemainingRepository(IConfiguration config) : base(config) { }
 
         public Task<int> Count(string searchWord)
         {

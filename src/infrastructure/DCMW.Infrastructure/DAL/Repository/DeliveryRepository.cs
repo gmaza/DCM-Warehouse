@@ -1,4 +1,5 @@
-﻿using DCMW.Common.Models;
+﻿using Dapper;
+using DCMW.Common.Models;
 using DCMW.Domain.Abstractions.Repository;
 using DCMW.Domain.Deliveries;
 using Microsoft.Extensions.Configuration;
@@ -7,46 +8,88 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class DeliveryRepository : IDeliveryRepository
+    public class DeliveryRepository : BaseRepository, IDeliveryRepository
     {
-        private readonly IConfiguration _config;
+        public DeliveryRepository(IConfiguration config) : base(config) {}
 
-        public DeliveryRepository(IConfiguration config)
+        public async Task<int> Count(string searchWord)
         {
-            _config = config;
-        }
+            string sql = @"SELECT Count(ID) 
+                            From [Deliveries]
+                            WHERE DistributorName like @search
+                                                OR DistributorMobileNumber like @search
+                                                OR DistributorEmail like @search
+                                                OR DistributorCompanyName like @search";
 
-        private IDbConnection Connection
-        {
-            get
+            int quantity;
+            using (var connection = Connection)
             {
-                return new SqlConnection(_config.GetConnectionString("dcmwconnectionstring"));
+                quantity = await connection.QueryFirstAsync<int>(sql, new { search = $"%{searchWord}%" });
             }
+
+            return quantity;
         }
 
-        public Task<int> Count(string searchWord)
+        public async Task<Result> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            string sql = @"DELETE FROM Deliveries
+                            WHERE ID = @ID";
+
+            int effectedRows;
+            using (var connection = Connection)
+            {
+                effectedRows = await connection.ExecuteAsync(sql, new { ID = id });
+            }
+
+            return effectedRows == 0 ? new Result(false, "ასეთი ჩანაწერი არ მოიძებნა") : Result.CreateSuccessReqest();
         }
 
-        public Task<Result> Delete(Guid id)
+        public async Task<IEnumerable<Delivery>> Filter(string searchWord, int skip, int take)
         {
-            throw new NotImplementedException();
+            string sql = @"SELECT *
+                            From [Deliveries]
+                            WHERE DistributorName like @search
+                                                OR DistributorMobileNumber like @search
+                                                OR DistributorEmail like @search
+                                                OR DistributorCompanyName like @search";
+
+            IEnumerable<Delivery> result;
+
+            using (var connection = Connection)
+            {
+                var rows = await connection.QueryAsync(sql, new { search = $"%{searchWord}%" });
+                result = rows.Select(r => (Delivery)ExtractModel<Delivery>(r));
+            }
+
+            return result;
         }
 
-        public Task<IEnumerable<Delivery>> Filter(string searchWord, int skip, int take)
+        public async Task<(Delivery, DateTime?)> Get(Guid id)
         {
-            throw new NotImplementedException();
-        }
+            string sql = @"SELECT *
+                            From [Deliveries]
+                            WHERE ID = @ID";
 
-        public Task<(Delivery, DateTime?)> Get(Guid id)
-        {
-            throw new NotImplementedException();
+            Delivery result = null;
+            DateTime? lastUpdateDate = null;
+
+            using (var connection = Connection)
+            {
+                var row = await connection.QuerySingleAsync(sql, new { ID = id });
+                if (row != null)
+                {
+                    result = ExtractModel<Delivery>(row);
+                    lastUpdateDate = DateTime.Parse(row.LastUpdateDate);
+                }
+            }
+
+            return (result, lastUpdateDate);
         }
 
         public Task<Result> Insert(Delivery t)

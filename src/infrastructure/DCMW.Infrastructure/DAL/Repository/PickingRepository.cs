@@ -12,22 +12,9 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class PickingRepository : IPickingRepository
+    public class PickingRepository : BaseRepository, IPickingRepository
     {
-        private readonly IConfiguration _config;
-
-        public PickingRepository(IConfiguration config)
-        {
-            _config = config;
-        }
-
-        private IDbConnection Connection
-        {
-            get
-            {
-                return new SqlConnection(_config.GetConnectionString("dcmwconnectionstring"));
-            }
-        }
+        public PickingRepository(IConfiguration config) : base(config) { }
 
         public Task<int> Count(string searchWord)
         {
