@@ -31,15 +31,16 @@ namespace DCMW.Application.UseCases.Deliveries
         {
             //get distributor from db and create DeliveryDistributor instance
             var (dis, _) = await distributorRepository.Get(request.DistributorID);
-            var deliveryDistributor = new DeliveryDistributor(dis.FullName, dis.MobileNumber, dis.Email, dis.CompanyName);
+            var deliveryDistributor = new DeliveryDistributor(Guid.NewGuid(), dis.FullName, dis.MobileNumber, dis.Email, dis.CompanyName);
 
             //get products from db and create DeliveryProduct instances
             var products = await productsRepository.GetByIDs(request.Products.Select(p => p.ProductID));
 
             var deliveryProducts = from productAmountsAndPrice in request.Products
-                                   join product in products
-                                        on productAmountsAndPrice.ProductID equals product.ID
-                                   select new DeliveryProduct(name: product.Name, 
+                                   let product = products.First(f=> productAmountsAndPrice.ProductID == f.ID)
+                                   select new DeliveryProduct(id: Guid.NewGuid(),
+                                                            productID: product.ID,
+                                                            name: product.Name, 
                                                             code: product.Code, 
                                                             description: product.Description, 
                                                             price: product.DefaultPrice, 

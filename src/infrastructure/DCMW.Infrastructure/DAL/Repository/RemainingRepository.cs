@@ -1,4 +1,5 @@
-﻿using DCMW.Common.Models;
+﻿using Dapper;
+using DCMW.Common.Models;
 using DCMW.Domain.Abstractions.Repository;
 using DCMW.Domain.Entities.Remainings;
 using Microsoft.Extensions.Configuration;
@@ -12,43 +13,32 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class RemainingRepository : BaseRepository, IRemaininRepository
+    public class RemainingRepository : BaseRepository<Remaining>, IRemaininRepository
     {
-        public RemainingRepository(IConfiguration config) : base(config) { }
+        public RemainingRepository(IConfiguration config) : base(config, "Remainings") { }
 
-        public Task<int> Count(string searchWord)
+        public async Task<(Remaining, DateTime?)> GetByProduct(Guid productID)
         {
-            throw new NotImplementedException();
+            string sql = @$"SELECT *
+                            From Remainings
+                            WHERE ProductID = @ProductID";
+
+            var model = default(Remaining);
+            DateTime? lastUpdateDate = null;
+
+            using (var connection = Connection)
+            {
+                var row = await connection.QuerySingleAsync(sql, new { @ProductID = productID });
+                if (row != null)
+                {
+                    model = (Remaining)ExtractModel<Remaining>(row);
+                    lastUpdateDate = DateTime.Parse(((IDictionary<string, object>)row)["LastUpdateDate"]?.ToString());
+                }
+            }
+
+            return (model, lastUpdateDate);
         }
 
-        public Task<Result> Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Remaining>> Filter(string searchWord, int skip, int take)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<(Remaining, DateTime?)> Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<(Remaining, DateTime)> GetByProduct(Guid productID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Insert(Remaining t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Update(Remaining t, DateTime lastUpdateDate)
-        {
-            throw new NotImplementedException();
-        }
+    
     }
 }

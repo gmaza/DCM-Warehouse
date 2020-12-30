@@ -12,38 +12,13 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class PickingRepository : BaseRepository, IPickingRepository
+    public class PickingRepository : BaseRepository<Picking>, IPickingRepository
     {
-        public PickingRepository(IConfiguration config) : base(config) { }
+        public PickingRepository(IConfiguration config) : base(config, "Pickings") { }
 
-        public Task<int> Count(string searchWord)
+        protected override string GetComparionsText(string searchWord)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Picking>> Filter(string searchWord, int skip, int take)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<(Picking, DateTime?)> Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Insert(Picking t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Update(Picking t, DateTime lastUpdateDate)
-        {
-            throw new NotImplementedException();
+            return $@"FullName like {searchWord}";
         }
     }
 }

@@ -10,8 +10,8 @@ namespace DCMW.Application.UseCases.Doctors
 {
     public class SaveNewDoctorRequest : IRequest<Result>
     {
-        public string FullName { get; internal set; }
-        public string Mobile { get; internal set; }
-        public string PersonalNumber { get; internal set; }
+        public string FullName { get;  set; }
+        public string Mobile { get;  set; }
+        public string PersonalNumber { get;  set; }
     }
 }

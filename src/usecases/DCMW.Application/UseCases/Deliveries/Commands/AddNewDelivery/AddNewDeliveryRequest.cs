@@ -19,6 +19,6 @@ namespace DCMW.Application.UseCases.Deliveries
     {
         public Guid ProductID { get; set; }
         public decimal Amoount { get; set; }
-        public string Unit { get; internal set; }
+        public string Unit { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace DCMW.Application.UseCases.Distrbutors.Queries.GetDistrbutors
 {
     public class GetDistrbutorsResponse
     {
-        public IEnumerable<Distributor> Items { get; internal set; }
-        public int Quantity { get; internal set; }
+        public IEnumerable<Distributor> Items { get;  set; }
+        public int Quantity { get;  set; }
     }
 }

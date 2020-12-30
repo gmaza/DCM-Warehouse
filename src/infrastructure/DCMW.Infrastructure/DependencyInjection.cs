@@ -1,4 +1,5 @@
-﻿using DCMW.Domain.Abstractions.Repository;
+﻿using CommonServiceLocator;
+using DCMW.Domain.Abstractions.Repository;
 using DCMW.Infrastructure.DAL.Repository;
 using MediatR;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ namespace DCMW.Infrastructure
             services.AddSingleton<IRemaininRepository, RemainingRepository>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
+            ServiceLocator.SetLocatorProvider(services.BuildServiceProvider());
 
             return services;
         }

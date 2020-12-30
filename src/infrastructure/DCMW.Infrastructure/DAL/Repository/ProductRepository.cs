@@ -1,4 +1,5 @@
-﻿using DCMW.Common.Models;
+﻿using Dapper;
+using DCMW.Common.Models;
 using DCMW.Domain.Abstractions.Repository;
 using DCMW.Domain.Products;
 using Microsoft.Extensions.Configuration;
@@ -12,43 +13,33 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class ProductRepository : BaseRepository, IProductsRepository
+    public class ProductRepository : BaseRepository<Product>, IProductsRepository
     {
-        public ProductRepository(IConfiguration config) : base(config) { }
+        public ProductRepository(IConfiguration config) : base(config, "Products") { }
 
-        public Task<int> Count(string searchWord)
+        public async Task<IEnumerable<Product>> GetByIDs(IEnumerable<Guid> ids)
         {
-            throw new NotImplementedException();
+            if (ids.Count() == 0)
+                return new List<Product>();
+
+            string sql = @"SELECT *
+                            From Products
+                            WHERE ID in @ids";
+
+            IEnumerable<Product> result;
+
+            using (var connection = Connection)
+            {
+                var rows = await connection.QueryAsync(sql, new { ids = ids} );
+                result = rows.Select(r => (Product)ExtractModel<Product>(r));
+            }
+
+            return result;
         }
 
-        public Task<Result> Delete(Guid id)
+        protected override string GetComparionsText(string searchWord)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Product>> Filter(string searchWord, int skip, int take)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<(Product, DateTime?)> Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Product>> GetByIDs(IEnumerable<Guid> ids)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Insert(Product t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Update(Product t, DateTime lastUpdateDate)
-        {
-            throw new NotImplementedException();
+            return $@"Name like {searchWord}";
         }
     }
 }

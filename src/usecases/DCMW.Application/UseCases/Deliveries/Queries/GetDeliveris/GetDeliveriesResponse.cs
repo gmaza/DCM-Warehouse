@@ -9,7 +9,7 @@ namespace DCMW.Application.UseCases.Deliveries
 {
     public class GetDeliveriesResponse
     {
-        public IEnumerable<Delivery> Items { get; internal set; }
-        public int Quantity { get; internal set; }
+        public IEnumerable<Delivery> Items { get;  set; }
+        public int Quantity { get;  set; }
     }
 }

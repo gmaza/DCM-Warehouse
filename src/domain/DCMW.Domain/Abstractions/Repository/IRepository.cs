@@ -16,5 +16,8 @@ namespace DCMW.Domain.Abstractions.Repository
         Task<(T, DateTime?)> Get(Guid id);
 
         Task<Result> Delete(Guid id);
+
+        Task<IEnumerable<T>> Filter(string searchWord, int skip, int take);
+        Task<int> Count(string searchWord);
     }
 }

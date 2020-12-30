@@ -4,6 +4,7 @@ namespace DCMW.Domain.Doctors
 {
     public partial class Doctor
     {
+        public Doctor() { }
         public Doctor(Guid id, string fullName, string mobile, string personalNumber) : base(id)
         {
             _fullName = fullName;

@@ -39,7 +39,7 @@ GO
 		[ID] UNIQUEIDENTIFIER PRIMARY KEY,
 		[Date] DATETIME NOT NULL,
 		[DistributorID] UNIQUEIDENTIFIER,
-		[DistributorName] NVARCHAR(100),		
+		[DistributorFullName] NVARCHAR(100),		
 		[DistributorMobileNumber] NVARCHAR(100),		
 		[DistributorEmail] NVARCHAR(200),		
 		[DistributorCompanyName] NVARCHAR(200),		
@@ -255,4 +255,43 @@ GO
 			name = 'Remainings_Ordering'
 			AND object_id = OBJECT_ID('Remainings')
 	) BEGIN CREATE UNIQUE INDEX Remainings_Ordering ON Remainings (Ordering);
+END
+
+--MIGRATIONS
+GO
+	-- ADD ProductID field FOR DeliveryProducts
+	IF NOT EXISTS (
+		SELECT
+			*
+		FROM
+			sys.columns
+		WHERE
+			object_id = OBJECT_ID(N'[dbo].[DeliveryProducts]')
+			AND name = 'ProductID'
+	) BEGIN
+ALTER TABLE
+	DeliveryProducts
+ADD
+	ProductID UNIQUEIDENTIFIER,
+	FOREIGN KEY (ProductID) REFERENCES Products(ID);
+END
+
+
+GO
+	-- ADD  fields FOR DeliveryProducts
+	IF NOT EXISTS (
+		SELECT
+			*
+		FROM
+			sys.columns
+		WHERE
+			object_id = OBJECT_ID(N'[dbo].[DeliveryProducts]')
+			AND name = 'Price'
+	) BEGIN
+ALTER TABLE
+	DeliveryProducts
+ADD
+	Price decimal(9, 2),		
+	Unit nvarchar(300),
+	Quantity decimal(9, 2)
 END

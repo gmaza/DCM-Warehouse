@@ -9,7 +9,7 @@ namespace DCMW.Application.UseCases.Doctors.Queries.GetDoctors
 {
     public class GetDoctorsResponse
     {
-        public IEnumerable<Doctor> Items { get; internal set; }
-        public int Quantity { get; internal set; }
+        public IEnumerable<Doctor> Items { get;  set; }
+        public int Quantity { get;  set; }
     }
 }

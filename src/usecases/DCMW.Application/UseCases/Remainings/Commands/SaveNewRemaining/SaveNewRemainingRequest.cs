@@ -10,41 +10,11 @@ namespace DCMW.Application.UseCases.Remainings
 {
     public class SaveNewRemainingRequest : IRequest<Result>
     {
-        private decimal _amount;
+        public decimal Amount { get; set; }
+        public Guid ProductID { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Description { get; set; }
 
-        private Guid _productID;
-
-        private string _name;
-
-        private string _code;
-
-        private string _description;
-
-
-        public Guid ProductID
-        {
-            get => _productID;
-        }
-
-        public string Name
-        {
-            get => _name;
-        }
-
-        public string Code
-        {
-            get => _code;
-        }
-
-        public string Description
-        {
-            get => _description;
-        }
-
-
-        public decimal Amount
-        {
-            get { return _amount; }
-        }
     }
 }

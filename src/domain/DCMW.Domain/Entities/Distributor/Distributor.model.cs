@@ -2,6 +2,8 @@ namespace DCMW.Domain.Distributors
 {
     public partial class Distributor : BaseEntity
     {
+        private Distributor() { }
+
         private string _fullName;
         private string _mobileNumber;
         private string _email;

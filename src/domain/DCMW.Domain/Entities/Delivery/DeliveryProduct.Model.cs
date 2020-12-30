@@ -6,8 +6,9 @@ namespace DCMW.Domain.Deliveries
     {
         private DeliveryProduct(){}
 
-        public DeliveryProduct(string name, string code, string description, decimal price, decimal quantity, string unit)
+        public DeliveryProduct(Guid id, Guid productID, string name, string code, string description, decimal price, decimal quantity, string unit) : base(id)
         {
+            _productID = productID;
             _name = name;
             _code = code;
             _description = description;
@@ -16,12 +17,19 @@ namespace DCMW.Domain.Deliveries
             _unit = unit;
         }
 
+        private Guid _productID;
         private string _name;
         private string _code;
         private string _description;
         private decimal _price;
         private decimal _quantity;
         private string _unit;
+
+        public Guid ProductID
+        {
+            get => _productID;
+            set => value = _productID;
+        }
 
         public string Name
         {

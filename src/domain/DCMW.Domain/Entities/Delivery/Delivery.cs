@@ -1,3 +1,4 @@
+using DCMW.Domain.Events.Deliveries;
 using System;
 using System.Collections.Generic;
 
@@ -8,6 +9,8 @@ namespace DCMW.Domain.Deliveries {
             _date = date;
             _distributor = distributor;
             AddProducts(products);
+
+            Events.Add(new DeliveryCreated { Delivery = this });
         }
 
         public void AddProduct(DeliveryProduct product){

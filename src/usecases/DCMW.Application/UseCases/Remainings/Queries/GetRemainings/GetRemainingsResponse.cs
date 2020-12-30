@@ -9,7 +9,7 @@ namespace DCMW.Application.UseCases.Remainings
 {
     public class GetRemainingsResponse
     {
-        public IEnumerable<Remaining> Items { get; internal set; }
-        public int Quantity { get; internal set; }
+        public IEnumerable<Remaining> Items { get;  set; }
+        public int Quantity { get;  set; }
     }
 }

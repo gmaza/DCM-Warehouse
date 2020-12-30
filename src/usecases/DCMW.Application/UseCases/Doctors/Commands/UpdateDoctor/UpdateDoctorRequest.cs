@@ -10,9 +10,9 @@ namespace DCMW.Application.UseCases.Doctors.Commands.UpdateDoctor
 {
     public class UpdateDoctorRequest : IRequest<Result>
     {
-        public Guid ID { get; internal set; }
-        public string FullName { get; internal set; }
-        public string Mobile { get; internal set; }
-        public string PersonalNumber { get; internal set; }
+        public Guid ID { get;  set; }
+        public string FullName { get;  set; }
+        public string Mobile { get;  set; }
+        public string PersonalNumber { get;  set; }
     }
 }

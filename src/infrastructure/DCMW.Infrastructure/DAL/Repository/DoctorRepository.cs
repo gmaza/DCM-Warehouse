@@ -12,38 +12,13 @@ using System.Threading.Tasks;
 
 namespace DCMW.Infrastructure.DAL.Repository
 {
-    public class DoctorRepository : BaseRepository, IDoctorRepository
+    public class DoctorRepository : BaseRepository<Doctor>, IDoctorRepository
     {
-        public DoctorRepository(IConfiguration config) : base(config) { }
+        public DoctorRepository(IConfiguration config) : base(config,"Doctors") { }
 
-        public Task<int> Count(string searchWord)
+        protected override string GetComparionsText(string searchWord)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Delete(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<Doctor>> Filter(string searchWord, int skip, int take)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<(Doctor, DateTime?)> Get(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Insert(Doctor t)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Result> Update(Doctor t, DateTime lastUpdateDate)
-        {
-            throw new NotImplementedException();
+            return $@"FullName like {searchWord}";
         }
     }
 }

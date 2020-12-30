@@ -9,7 +9,6 @@ namespace DCMW.Domain.Abstractions.Repository
 {
     public interface IDistributorRepository : IRepository<Distributor>
     {
-        Task<IEnumerable<Distributor>> Filter(object searchWord, object skip, object take);
-        Task<int> Count(string searchWord);
+    
     }
 }

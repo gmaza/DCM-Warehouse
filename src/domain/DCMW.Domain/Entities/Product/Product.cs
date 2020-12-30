@@ -1,15 +1,20 @@
+using DCMW.Domain.Events.Products;
 using System;
 
 namespace DCMW.Domain.Products
 {
     public partial class Product
     {
+        public Product(){ }
+
         public Product(Guid id, string name, string code, string desc, decimal defaultPrice) : base(id)
         {
             _name = name;
             _code = code;
             _description = desc;
             _defaultPrice = defaultPrice;
+
+            Events.Add(new ProductCreated { Product = this });
         }
 
         public Product ChangeName(string name)

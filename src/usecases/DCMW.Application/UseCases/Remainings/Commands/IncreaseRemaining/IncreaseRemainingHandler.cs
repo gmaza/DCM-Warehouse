@@ -23,7 +23,7 @@ namespace DCMW.Application.UseCases.Remainings
         {
             var (remaining, lastUpdateDate) = await remaininRepository.GetByProduct(request.ProductID);
             remaining.Increase(request.Amount);
-            return await remaininRepository.Update(remaining, lastUpdateDate);
+            return await remaininRepository.Update(remaining, lastUpdateDate.Value);
         }
     }
 }

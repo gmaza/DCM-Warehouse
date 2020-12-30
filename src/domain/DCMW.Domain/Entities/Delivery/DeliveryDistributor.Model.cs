@@ -6,7 +6,7 @@ namespace DCMW.Domain.Deliveries
     {
         private DeliveryDistributor() { }
 
-        public DeliveryDistributor(string fullName, string mobileNumber, string email, string companyName)
+        public DeliveryDistributor(Guid id, string fullName, string mobileNumber, string email, string companyName) : base(id)
         {
             _fullName = fullName;
             _mobileNumber = mobileNumber;

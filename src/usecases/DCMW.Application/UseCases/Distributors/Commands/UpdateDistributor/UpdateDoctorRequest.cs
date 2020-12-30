@@ -10,10 +10,10 @@ namespace DCMW.Application.UseCases.Distrbutors.Commands.UpdateDistrbutor
 {
     public class UpdateDistrbutorRequest : IRequest<Result>
     {
-        public Guid ID { get; internal set; }
-        public string CompanyName { get; internal set; }
-        public string Email { get; internal set; }
-        public string FullName { get; internal set; }
-        public string Mobile { get; internal set; }
+        public Guid ID { get;  set; }
+        public string CompanyName { get;  set; }
+        public string Email { get;  set; }
+        public string FullName { get;  set; }
+        public string Mobile { get;  set; }
     }
 }

@@ -6,6 +6,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="EventHandlers\Remainings\" />
     <Folder Include="UseCases\Distributors\Commands\" />
     <Folder Include="UseCases\Distributors\Queries\" />
     <Folder Include="UseCases\Doctors\Commands\" />
@@ -13,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CommonServiceLocator" Version="2.0.5" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />

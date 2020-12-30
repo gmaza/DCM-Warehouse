@@ -17,8 +17,10 @@ namespace DCMW.Domain
             _id = id;
         }
 
-        protected BaseEntity(){}
+        protected BaseEntity()
+        {
+        }
 
-        public List<IDomainEvent> Events { get; }
+        public List<IDomainEvent> Events { get; } = new List<IDomainEvent>();
     }
 }
